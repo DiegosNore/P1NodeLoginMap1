@@ -7,7 +7,7 @@ LABEL maintainer="Diego Noreña-dsalaz26@eafit.edu.co"
 ARG PORT=3000
 ENV PORT $PORT
 
-WORKDIR /nodeApp
+WORKDIR /P1NodeLoginMap1
 COPY . ./
 
 RUN npm install --test
