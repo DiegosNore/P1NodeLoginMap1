@@ -1,7 +1,7 @@
 FROM node:9.6.1
 
 LABEL version="1.0"
-LABEL description="Web app Articulos NodeJS"
+LABEL description="Proyecto1"
 LABEL maintainer="Diego Noreña-dsalaz26@eafit.edu.co"
 
 ARG PORT=3000
