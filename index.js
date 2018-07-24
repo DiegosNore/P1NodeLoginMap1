@@ -24,21 +24,18 @@ var promise = mongoose.connect('mongodb://localhost/P1NodeLoguinMap1', {
 // set up our express application
 app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
-app.use(bodyParser.urlencoded({extended:true})); // get information from html forms
-<<<<<<< HEAD
+app.use(bodyParser.urlencoded({extended:true})); // get information from html forms<<<<<<< HEAD
 app.set('view engine', 'ejs'); // set up ejs for templating
 
 // required for passport
 app.use(session({ secret: 'unetsyscomikrohotel', saveUninitialized: true,
-                proxy:true, resave:true})); // session secret
-=======
+                proxy:true, resave:true})); // session secret=======
 
 app.set('view engine', 'ejs'); // set up ejs for templating
 
 // required for passport
 app.use(session({ secret: 'unetsyscomikrohotel', saveUninitialized: true, 
-                proxy:true, resave:true })); // session secret
->>>>>>> 0be6744ec361e7853031a3c71e8c63a1401d4261
+                proxy:true, resave:true })); // session secret>>>>>>> 0be6744ec361e7853031a3c71e8c63a1401d4261
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
