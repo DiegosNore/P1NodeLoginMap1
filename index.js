@@ -14,7 +14,7 @@ var session      = require('express-session');
 var configDB = require('./config/database.js');
 
 // configuration ===============================================================
-var promise = mongoose.connect('mongodb://localhost/P1NodeLoguinMap1', {
+var promise = mongoose.connect('mongodb://mongo-server/P1NodeLoguinMap1', {
   useMongoClient: true,
   /* other options */
 }); // connect to our database
@@ -34,7 +34,7 @@ app.use(session({ secret: 'unetsyscomikrohotel', saveUninitialized: true,
 app.set('view engine', 'ejs'); // set up ejs for templating
 
 // required for passport
-app.use(session({ secret: 'unetsyscomikrohotel', saveUninitialized: true, 
+app.use(session({ secret: 'unetsyscomikrohotel', saveUninitialized: true,
                 proxy:true, resave:true })); // session secret>>>>>>> 0be6744ec361e7853031a3c71e8c63a1401d4261
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
