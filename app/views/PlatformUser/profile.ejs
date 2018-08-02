@@ -1,6 +1,6 @@
 <% include layouts/_header.ejs %>
 <div class="page-header text-center">
-        <h1><span class="fa fa-anchor"></span> Pagina de Perfil</h1>
+        <h1><span class="fa fa-camera-retro"></span> Pagina de Perfil</h1>
         <a href="/logout" class="btn btn-default btn-sm">Logout</a>
     </div>
     <div class="row">
@@ -10,89 +10,34 @@
                 <h3><span class="fa fa-user"></span> Local</h3>
 
                     <p>
-                        <strong id="idUser">id</strong>: <%= user._id %><br>
-                        <strong>email</strong>: <%= user.local.email %><br>
+                        <strong>id</strong>: <%= user._id %><br>
+                        <strong>user</strong>: <%= user.local.email %><br>
                     </p>
                     <br>
                     <!-- Se determina y escribe la localizacion -->
                     <div id='ubicacion'></div>
-                    <script typutpe="text/javascript">
-                      var latitud;
-                      var longitud;
+                    <script type="text/javascript">
                     	if (navigator.geolocation) {
                     		navigator.geolocation.getCurrentPosition(mostrarUbicacion);
                     	} else {alert("¡Error! Este navegador no soporta la Geolocalización.");}
                     function mostrarUbicacion(position) {
                         var times = position.timestamp;
-                    	 latitud = position.coords.latitude;
-                    	 longitud = position.coords.longitude;
+                    	var latitud = position.coords.latitude;
+                    	var longitud = position.coords.longitude;
                         var altitud = position.coords.altitude;
                     	var exactitud = position.coords.accuracy;
                     	var div = document.getElementById("ubicacion");
                     	div.innerHTML = "Timestamp: " + times + "<br>Latitud: " + latitud + "<br>Longitud: " + longitud + "<br>Altura en metros: " + altitud + "<br>Exactitud: " + exactitud;}
                     function refrescarUbicacion() {
                     	navigator.geolocation.watchPosition(mostrarUbicacion);}
-                    
-                      function guardarPunto(){
-                      var data = {
-                      "user":  document.getElementById("idUser"),
-                      "time":	new Date(),
-                      "lng":	longitud,
-                      "lat":	latitud
-                      };
-                      fetch('https://salvar30.dis.eafit.edu.co/routes', {
-                          method: 'POST',
-                          body: JSON.stringify(data),
-                          headers: {'Content-Type': 'application/json'}
-                      }).then(response => { 
-                        return response.json(); 
-                      }).then(data => { 
-                        alert(JSON.stringify(data));
-                      }).catch(err => {
-                          alert(err);
-                      });
-                    }
-
                     </script>
 
                     <!-- Se escribe un mapa con la localizacion anterior-->
                     <div id="demo"></div>
                     <div id="mapholder"></div>
-                    <!-- <script src="http://maps.google.com/maps/api/js?sensor=false"></script> -->
-                    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBSDeOmd-NrfRfD1U1yBBOEO3I4uyN1OSo"></script>
+                    <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
                     <button onclick="cargarmap()">Cargar mapa</button>
-                    
-                    
-                    
-                    <button onclick="guardarPunto()">guardar punto</button>
-                    
-                    
-                    
                     <script type="text/javascript">
-                    
-                    // var User = require('../app/models/user');
-                    
-                    // function guardarPunto(){
-                    //   router.post('/', (req, res, next) =>{
-                    //     User.find((err,User)=>{
-                    //       console.log(User);
-                    //       if(err) throw err;
-                    //       res.render('index',{user:user});
-                    //     });
-                    //   });
-
-                    // }
-                    // router.post('/', (req, res, next) =>{
-                    //   var newArticulo = new Article({
-                    //     lat: position.coords.latitude,
-                    //     long: position.coords.longitude
-                    //   });
-                    //   newArticulo.save(function(err, newArticulo) {
-                    //     if (err) return next(err);
-                    //     res.redirect(config.baseUrl);
-                    //   });
-                    // });
-                    
                     var x=document.getElementById("demo");
                     function cargarmap(){
                     navigator.geolocation.getCurrentPosition(showPosition,showError);
@@ -105,7 +50,7 @@
                       mapholder.style.height='250px';
                       mapholder.style.width='500px';
                       var myOptions={
-                      center:latlon,zoom:15,
+                      center:latlon,zoom:10,
                       mapTypeId:google.maps.MapTypeId.ROADMAP,
                       mapTypeControl:false,
                       navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL}
