@@ -32,7 +32,7 @@
                     	div.innerHTML = "Timestamp: " + times + "<br>Latitud: " + latitud + "<br>Longitud: " + longitud + "<br>Altura en metros: " + altitud + "<br>Exactitud: " + exactitud;}
                     function refrescarUbicacion() {
                     	navigator.geolocation.watchPosition(mostrarUbicacion);}
-                    
+
                       function guardarPunto(){
                       var data = {
                       "user":  document.getElementById("idUser"),
@@ -40,13 +40,13 @@
                       "lng":	longitud,
                       "lat":	latitud
                       };
-                      fetch('https://salvar30.dis.eafit.edu.co/routes', {
+                      fetch('https://dsalaz26.dis.eafit.edu.co/routes', {
                           method: 'POST',
                           body: JSON.stringify(data),
                           headers: {'Content-Type': 'application/json'}
                       }).then(response => { 
-                        return response.json(); 
-                      }).then(data => { 
+                        return response.json();
+                      }).then(data => {
                         alert(JSON.stringify(data));
                       }).catch(err => {
                           alert(err);
@@ -61,17 +61,17 @@
                     <!-- <script src="http://maps.google.com/maps/api/js?sensor=false"></script> -->
                     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBSDeOmd-NrfRfD1U1yBBOEO3I4uyN1OSo"></script>
                     <button onclick="cargarmap()">Cargar mapa</button>
-                    
-                    
-                    
+
+
+
                     <button onclick="guardarPunto()">guardar punto</button>
-                    
-                    
-                    
+
+
+
                     <script type="text/javascript">
-                    
+
                     // var User = require('../app/models/user');
-                    
+
                     // function guardarPunto(){
                     //   router.post('/', (req, res, next) =>{
                     //     User.find((err,User)=>{
@@ -92,7 +92,7 @@
                     //     res.redirect(config.baseUrl);
                     //   });
                     // });
-                    
+
                     var x=document.getElementById("demo");
                     function cargarmap(){
                     navigator.geolocation.getCurrentPosition(showPosition,showError);
