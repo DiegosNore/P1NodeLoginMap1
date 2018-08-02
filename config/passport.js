@@ -5,12 +5,11 @@ var LocalStrategy = require('passport-local').Strategy;
 var User = require('../app/models/user');
 
 
-
 module.exports = function(passport){
 
 	//serialize User
 	passport.serializeUser(function(user,done){
-		done(null, user.id);								
+		done(null, user.id);
 	});
 
 	//deserializeUser
@@ -54,17 +53,17 @@ module.exports = function(passport){
 	passport.use('local-login', new LocalStrategy({
 		usernameField : 'email',
 		passwordField : 'password',
-		passReqToCallback: true	
+		passReqToCallback: true
 		}, function(req, email, password, done){
 			//buscar usuario por email
 			User.findOne({'local.email': email}, function(err,user) {
 				//depurar error
 				if (err) return done(err);
 				//mensaje de usuario no encontrado
-				if (!user) 
+				if (!user)
 					return done(null, false, req.flash('loginMessage','No se encuentra registrado'));
 				//contraseña incorrecta
-				if (!user.validPassword(password)) 
+				if (!user.validPassword(password))
 					return done(null, false, req.flash('loginMessage', 'Contraseña incorrecta'));
 				//si todo salio bien
 				return done(null, user);
