@@ -1,13 +1,13 @@
 <% include layouts/_header.ejs %>
 <div class="page-header text-center">
-        <h1><span class="fa fa-map-marker"></span> GPS App</h1>
+        <h1><span class="fa fa-anchor"></span> Pagina de Perfil</h1>
         <a href="/logout" class="btn btn-default btn-sm">Logout</a>
     </div>
     <div class="row">
         <div class="col-sm-6">
             <div class="well">
 
-                <h3><span class="fa fa-user"></span> User Information</h3>
+                <h3><span class="fa fa-user"></span> Local</h3>
 
                     <p>
                         <strong id="idUser">id</strong>: <%= user._id %><br>
@@ -30,6 +30,7 @@
                     	var exactitud = position.coords.accuracy;
                     	var div = document.getElementById("ubicacion");
                     	div.innerHTML = "Timestamp: " + times + "<br>Latitud: " + latitud + "<br>Longitud: " + longitud + "<br>Altura en metros: " + altitud + "<br>Exactitud: " + exactitud;}
+
                     function refrescarUbicacion() {
                     	navigator.geolocation.watchPosition(mostrarUbicacion);}
 
@@ -40,11 +41,11 @@
                       "lng":	longitud,
                       "lat":	latitud
                       };
-                      fetch('https://dsalaz26.dis.eafit.edu.co/routes', {
+                      fetch('https://salvar30.dis.eafit.edu.co/routes', {
                           method: 'POST',
                           body: JSON.stringify(data),
                           headers: {'Content-Type': 'application/json'}
-                      }).then(response => { 
+                      }).then(response => {
                         return response.json();
                       }).then(data => {
                         alert(JSON.stringify(data));
@@ -101,17 +102,28 @@
                       lat=position.coords.latitude;
                       lon=position.coords.longitude;
                       latlon=new google.maps.LatLng(lat, lon)
+                      latlonp=new google.maps.LatLng(6.1995533,-75.5815341)
                       mapholder=document.getElementById('mapholder')
                       mapholder.style.height='250px';
                       mapholder.style.width='500px';
+                      var path=[latlon,latlonp];
+                      var flightPath = new google.maps.Polyline({
+                        path: path,
+                        geodesic: true,
+                        strokeColor: '#FF0000',
+                        strokeOpacity: 1.0,
+                        strokeWeight: 2
+                      });
                       var myOptions={
-                      center:latlon,zoom:15,
+                      center:latlon,zoom:12,
                       mapTypeId:google.maps.MapTypeId.ROADMAP,
                       mapTypeControl:false,
                       navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL}
                       };
                       var map=new google.maps.Map(document.getElementById("mapholder"),myOptions);
                       var marker=new google.maps.Marker({position:latlon,map:map,title:"You are here!"});
+                      var marker2=new google.maps.Marker({position:latlonp,map:map,title:"last Point"})
+                      flightPath.setMap(map);
                       }
                     function showError(error)
                       {
