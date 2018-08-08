@@ -30,7 +30,7 @@ En caso de querer utilizarlo de manera local:
 ```
   $ emacs index.js
   //cambiar linea 18 por var 
-  promise = mongoose.connect('mongodb://server-login/loginGPS', {
+  promise = mongoose.connect('mongodb://localhost/loginGPS', {
 ```
 Esto montará la aplicacion en el servidor o en el Localhost
 Se puede acceder a la aplicación a través del siguiente link: https://dsalasz26.dis.eafit.edu.co
