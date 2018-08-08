@@ -15,7 +15,7 @@ var session      = require('express-session');
 var configDB = require('./config/database.js');
 
 // configuration ===============================================================
-var promise = mongoose.connect('mongodb://mongo-server/loginGPS', {
+var promise = mongoose.connect('mongodb://server-login/loginGPS', {
   useMongoClient: true,
   /* other options */
 }); // connect to our database

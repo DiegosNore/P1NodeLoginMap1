@@ -28,7 +28,7 @@ module.exports = function (app, passport) {
 	}));
 
 	app.post('/routes', function(req,res){
-		
+
 		console.log(req.body);
 		var route = new rutas(req.body);
 		route.save(function(err){
@@ -36,7 +36,7 @@ module.exports = function (app, passport) {
 		});
 		// var userId = req.params.id;
 		// var update = req.body.route;
-		
+
 		// Route.findByIdAndUpdate(routeId, update, function (err, routeUpdated){
 		// 	if(err){
 		// 		res.status(500).send({message:'No se ha podido procesar la solicitud, ruta no actualizada'});
@@ -48,7 +48,7 @@ module.exports = function (app, passport) {
 		// 		}
 		// 	}
 		// });
-		
+
 
 		// res.require('../app/models/user');
 	});
